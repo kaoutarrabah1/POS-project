@@ -15,11 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            RoleUserSeeder::class,    // المستخدمين
+            CategorySeeder::class,    // التصنيفات
+            TableSeeder::class,       // الطاولات
+            MenuItemSeeder::class,    // عناصر القائمة (يحتاج categories)
+            StockSeeder::class,       // المخزون (يحتاج menu_items)
+            OrderSeeder::class,       // الطلبات (يحتاج client و menu_items)
+            ReservationSeeder::class, // الحجوزات (يحتاج client و tables)
+            PaymentSeeder::class,     // المدفوعات (يحتاج orders)
         ]);
     }
 }
